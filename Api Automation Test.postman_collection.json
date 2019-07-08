@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "2f2e42d2-800f-4d53-8e3b-3c5bb6b5223e",
+		"name": "Api Automation Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c293c6e2-fba1-4da3-9a93-f47395af004c",
+						"exec": [
+							"",
+							"pm.test(\"Response code is 200\",function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Print company names ending in group\",function(){",
+							"    var jsonData = pm.response.json();",
+							"    for(var index = 0; index < jsonData.length; index ++){",
+							"         var companyName = jsonData[index].company.name;",
+							"         if(companyName.endsWith(\"Group\"))",
+							"          console.log(companyName)",
+							"    }",
+							"})",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
